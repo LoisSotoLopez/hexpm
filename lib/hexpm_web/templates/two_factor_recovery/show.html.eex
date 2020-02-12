@@ -2,7 +2,7 @@
   <%= form_tag(Routes.two_factor_recovery_path(Endpoint, :create)) do %>
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
-        <input id="code" name="code" type="text" value="" class="form-control" maxlength="19" pattern="\d{4}-\d{4}-\d{4}-\d{4}" title="Recovery code in xxxx-xxxx-xxxx-xxxx format." value="" autocomplete="off"/>
+        <input id="code" name="code" type="text" value="" class="form-control" maxlength="19" pattern="\w{4}-\w{4}-\w{4}-\w{4}" title="Recovery code in xxxx-xxxx-xxxx-xxxx format." value="" autocomplete="off"/>
       </div>
      </div>
 

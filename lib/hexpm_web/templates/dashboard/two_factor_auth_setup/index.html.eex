@@ -13,8 +13,8 @@
         <%= form_for @changeset, Routes.dashboard_security_path(Endpoint, :update), [method: :post], fn f -> %>
             <div class="form-group">
               <%= label f, :verification_code %>
-              <%= text_input f, :verification_code %>
-              <%= error_tag f, :verification_code %>
+              <%= ViewHelpers.text_input f, :verification_code %>
+              <%= ViewHelpers.error_tag f, :verification_code %>
             </div>
 
           <button type="submit" class="btn btn-primary">Enable</button>

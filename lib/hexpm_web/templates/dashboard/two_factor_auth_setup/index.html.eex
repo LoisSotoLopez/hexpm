@@ -3,13 +3,14 @@
     <%= render DashboardView, "_sidebar.html", assigns %>
   </div>
 
-  <div class="col-sm-9">
+  <div class="col-sm-9 security">
     <div class="panel panel-default">
       <div class="panel-heading">Setup Security App</div>
-      <div class="panel-body">
+      <div class="panel-body recovery-codes-panel">
         <h1>Scan this barcode with your app</h1>
         <div style="text-align:center"><%= raw @qr_code %></div>
-
+      </div>
+      <div class="panel-body">
         <%= form_for @changeset, Routes.dashboard_security_path(Endpoint, :update), [method: :post], fn f -> %>
             <div class="form-group">
               <%= label f, :verification_code %>

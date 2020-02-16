@@ -43,6 +43,11 @@ defmodule HexpmWeb.Dashboard.SecurityController do
     end
   end
 
+  def reset_auth_app(conn, _params) do
+    user = conn.assigns.current_user
+    reset_tfa_setting(user, conn)
+  end
+
   defp render_index(conn, changeset) do
     render(
       conn,
@@ -68,6 +73,20 @@ defmodule HexpmWeb.Dashboard.SecurityController do
   end
 
   defp update_tfa_setting(user, conn, false, true) do
+    case Users.update_security(user, %{"tfa_enabled" => "true"}, audit: audit_data(conn)) do
+      {:ok, _user} ->
+        conn
+        |> put_flash(:info, "Your security preference has been updated.")
+        |> redirect(to: Routes.dashboard_two_factor_auth_setup_path(conn, :index))
+
+      {:error, changeset} ->
+        conn
+        |> put_status(400)
+        |> render_index(changeset)
+    end
+  end
+
+  defp reset_tfa_setting(user, conn) do
     case Users.update_security(user, %{"tfa_enabled" => "true"}, audit: audit_data(conn)) do
       {:ok, _user} ->
         conn

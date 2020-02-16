@@ -136,6 +136,9 @@ defmodule HexpmWeb.Router do
     post "/two_factor_auth/setup", TwoFactorAuthSetupController, :update,
       as: :dashboard_two_factor_auth_setup
 
+    post "/security/reset_auth_app", SecurityController, :reset_auth_app,
+      as: :dashboard_security_reset
+
     get "/email", EmailController, :index
     post "/email", EmailController, :create
     delete "/email", EmailController, :delete

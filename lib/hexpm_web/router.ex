@@ -84,8 +84,10 @@ defmodule HexpmWeb.Router do
     get "/dashboard", DashboardController, :index
 
     get "/users/:username", UserController, :show
-
+    post "/users/me/toggle_follow", UserController, :toggle_follow
+    
     get "/orgs/:username", UserController, :show
+    
 
     get "/docs", DocsController, :index
     get "/docs/usage", DocsController, :usage

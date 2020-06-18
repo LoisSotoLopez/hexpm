@@ -28,6 +28,8 @@ defmodule Hexpm.Accounts.User do
     has_many :audit_logs, AuditLog
     has_many :password_resets, PasswordReset
     has_many :package_reports, Hexpm.Repository.PackageReport
+    has_many :favourite_packages, FavouritePackage
+    has_many :packages, through: [:favourite_packages, :package]
   end
 
   @username_regex ~r"^[a-z0-9_\-\.]+$"

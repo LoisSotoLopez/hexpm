@@ -22,6 +22,8 @@ defmodule Hexpm.Shared do
         Repository.PackageReportRelease,
         Repository.Assets,
         Repository.Download,
+        Repository.FavouritePackage,
+        Repository.FavouritePackages,
         Repository.Install,
         Repository.Installs,
         Repository.Owners,

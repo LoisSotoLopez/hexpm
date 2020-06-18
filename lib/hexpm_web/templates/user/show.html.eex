@@ -7,10 +7,24 @@
     <% else %>
       <h3 class="first-header">Owned packages</h3>
       <ul class="user-package-list">
-        <%= for package <- @packages do %>
+        <%= for package <- @owned_packages do %>
           <li>
             <a href="<%= ViewHelpers.path_for_package(package) %>"><%= ViewHelpers.package_name(package) %></a>
             <%= package.latest_version %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= if @favourite_packages == [] do %>
+      <h3>No favourite packages</h3>
+    <% else %>
+      <h3 class="first-header">Favourite packages</h3>
+      <ul class="user-package-list">
+        <%= for favourite <- @favourite_packages do %>
+          <li>
+            <a href="<%= ViewHelpers.path_for_package(favourite.package) %>"><%= ViewHelpers.package_name(favourite.package) %></a>
+            <%= favourite.package.latest_version %>
           </li>
         <% end %>
       </ul>

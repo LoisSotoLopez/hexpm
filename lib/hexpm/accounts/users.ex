@@ -537,4 +537,12 @@ defmodule Hexpm.Accounts.Users do
   def has_role(user, role) do
     user != nil and user.role == role
   end
+
+  def add_favourite_package(favourite) do
+    Repo.insert(favourite)
+  end
+
+  def remove_favourite_package(favourite) do
+    Repo.delete_all(FavouritePackage.get(favourite.id))
+  end
 end

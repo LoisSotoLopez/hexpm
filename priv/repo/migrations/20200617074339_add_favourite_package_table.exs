@@ -2,19 +2,15 @@ defmodule Hexpm.RepoBase.Migrations.AddFavouritePackageTable do
   use Ecto.Migration
 
   def up() do
-    execute("""
-      CREATE TABLE favourite_packages (
-        id serial PRIMARY KEY,
-        user_id integer REFERENCES users,
-        package_id integer REFERENCES packages,
+    create table(:favourite_packages) do
+      add(:user_id, references(:users), null: false)
+      add(:package_id, references(:packages), null: false)
 
-        updated_at timestamp,
-        inserted_at timestamp
-      )
-    """)
+      timestamps()
+    end
   end
 
   def drop() do
-    execute("DROP TABLE IF EXISTS favourite_packages")
+    drop(table("favourite_packages"))
   end
 end

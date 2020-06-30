@@ -167,12 +167,14 @@ tools = [
         <input type = "hidden" name = "repository" value = "<%= @package.repository.name %>"/>
         <button type = "submit"> Report <%= ViewHelpers.package_name(@package) %> </button>
       </form>
-    <h3>Follow</h3>
+    <%= if ViewHelpers.logged_in?(assigns) do %>
+    <h3>Favourite</h3>
       <%= form_tag(Routes.user_path(Endpoint, :toggle_follow), method: :post) do %>
         <input type = "hidden" name = "package" value = "<%= @package.name %>"/>
         <input type = "hidden" name = "repository" value = "<%= @package.repository.name %>"/>
-        <button type = "submit"> Follow </button>
+        <button type = "submit"> Favourite </button>
       <% end %>
+    <%= end %>
     <h3>Config</h3>
     <%= for {tool, file} <- tools do %>
       <div class="package-snippet">

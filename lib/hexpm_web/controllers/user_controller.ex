@@ -34,10 +34,10 @@ defmodule HexpmWeb.UserController do
     else
       Users.add_favourite_package(%FavouritePackage{:user => user, :package => package})
     end
-    
+
     conn
-        |> put_flash(:info, "Favourite packages changed")
-        |> redirect(to: Routes.user_path(HexpmWeb.Endpoint, :show, conn.assigns.current_user))
+    |> put_flash(:info, "Favourite packages changed")
+    |> redirect(to: Routes.user_path(HexpmWeb.Endpoint, :show, conn.assigns.current_user))
   end
 
   defp show_user(conn, user) do
@@ -48,9 +48,8 @@ defmodule HexpmWeb.UserController do
     public_email = User.email(user, :public)
     gravatar_email = User.email(user, :gravatar)
 
-    favourite_packages = 
-      FavouritePackages.get_by_username(user.username)
-    
+    favourite_packages = FavouritePackages.get_by_username(user.username)
+
     render(
       conn,
       "show.html",
